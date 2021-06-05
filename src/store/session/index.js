@@ -25,6 +25,8 @@ export default {
     }
   },
   actions: {
+    signIn(ctx, credentials) {
+    },
     loadAccessToken(ctx) {
       const token = localStorage.getItem('access_token')
       ctx.commit('setAccessToken', token)

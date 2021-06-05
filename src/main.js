@@ -12,6 +12,16 @@ const router = createRouter({
   routes,
 })
 
+const isLoggedIn = () => {
+  return store.getters['session/getSession']
+}
+
+router.beforeEach(async (to, from) => {
+  if (to.meta.requiresAuth && !isLoggedIn()) {
+    router.push('/account')
+  }
+})
+
 createApp(App)
 .use(router)
 .use(store)

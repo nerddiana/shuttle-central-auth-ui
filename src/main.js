@@ -5,6 +5,7 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store/index'
+import 'virtual:windi.css'
 
 const router = createRouter({
   history: createWebHistory(),

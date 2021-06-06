@@ -51,6 +51,17 @@ export default {
         return;
       }
 
+      if (password !== repassword) {
+        ctx.commit('alerts/setAlert', {
+          type: 'error',
+          title: 'Las contraseñas no coinciden',
+          message: 'Verifique de nuevo su contraseña'
+        }, {
+          root: true
+        })
+        return;
+      }
+
       const userUUID = ctx.rootState.session.session.sub
       const apiUrl = `/admin/realms/master/users/${userUUID}/reset-password`
       api

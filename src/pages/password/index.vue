@@ -24,7 +24,10 @@ export default defineComponent({
   },
   methods: {
     updatePassword() {
-      this.$store.dispatch('password/savePassword', this.password)
+      this.$store.dispatch('password/savePassword', {
+        password: this.password,
+        repassword: this.repassword
+      })
     }
   },
   beforeUnmount() {

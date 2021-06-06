@@ -25,6 +25,7 @@ export default defineComponent({
   methods: {
     recovery() {
       this.$store.commit('alerts/setAlert', {
+        type: 'success',
         title: 'Enlace enviado',
         message: 'Enviamos un correo con tu enlace de acceso temporal'
       })

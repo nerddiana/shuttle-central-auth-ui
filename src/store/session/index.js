@@ -46,6 +46,7 @@ export default {
           if (err.response.status === 401) {
             // Unauthorized
             ctx.commit('alerts/setAlert', {
+              type: 'error',
               title: 'Las credenciales no coinciden',
               message: 'Por favor, revise sus credenciales'
             }, {
@@ -54,6 +55,7 @@ export default {
           } else {
             // Unhandled error
             ctx.commit('alerts/setAlert', {
+              type: 'error',
               title: 'Error desconocido',
               message: 'Por favor, intente mas tarde'
             }, {

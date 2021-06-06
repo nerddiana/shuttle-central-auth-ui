@@ -16,6 +16,7 @@ export default {
         .then(res => {
           if (res.status === 204) {
             ctx.commit('alerts/setAlert', {
+              type: 'error',
               title: 'Contraseña actualizada',
               message: 'Su contraseña ha sido actualizada con éxito'
             }, {
@@ -25,6 +26,7 @@ export default {
         })
         .catch(err => {
           ctx.commit('alerts/setAlert', {
+            type: 'error',
             title: 'Lo sentimos',
             message: 'Su contraseña no pudo ser actualizada'
           }, {

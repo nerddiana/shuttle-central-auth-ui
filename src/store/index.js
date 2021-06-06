@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import session from './session'
+import password from './password'
 
 const defaultState = {};
 
@@ -8,6 +9,7 @@ export default createStore({
     return defaultState;
   },
   modules: {
-    session
+    session,
+    password
   }
 });

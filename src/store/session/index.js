@@ -63,6 +63,10 @@ export default {
           }
         })
     },
+    signOut(ctx) {
+      localStorage.removeItem('access_token')
+      router.push('/account')
+    },
     async saveAccessToken(ctx, token) {
       console.log('saveAccessToken')
       localStorage.setItem('access_token', token)

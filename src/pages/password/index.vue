@@ -2,6 +2,9 @@
   <h1>Cambiar contraseña</h1>
   <form @submit.prevent="updatePassword">
     <legend>Introduce tu nueva contraseña</legend>
+    <div v-show="$store.state.alerts.alert">
+      {{ $store.state.alerts.alert }}
+    </div>
     <input type="text" v-model="password" />
     <input type="text" v-model="repassword" />
     <input type="submit" value="Guardar cambios" />

@@ -30,6 +30,9 @@ export default defineComponent({
         message: 'Enviamos un correo con tu enlace de acceso temporal'
       })
     }
+  },
+  beforeUnmount() {
+    this.$store.commit('alerts/clear')
   }
 })
 </script>

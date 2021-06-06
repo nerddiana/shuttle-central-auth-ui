@@ -66,6 +66,9 @@ export default {
     },
     signOut(ctx) {
       localStorage.removeItem('access_token')
+      ctx.commit('setSession', null)
+      ctx.commit('setAccessToken', null)
+      delete api.defaults.headers.common['Authorization']
       router.push('/signin')
     },
     async saveAccessToken(ctx, token) {

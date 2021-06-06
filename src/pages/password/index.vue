@@ -18,8 +18,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data() {
     return {
-      password: '1234',
-      repassword: '1234'
+      password: '',
+      repassword: ''
     }
   },
   methods: {

@@ -30,6 +30,28 @@ export default {
     async signIn(ctx, data) {
       const apiUrl = '/realms/master/protocol/openid-connect/token'
 
+      if (!data.username.length) {
+        ctx.commit('alerts/setAlert', {
+          type: 'error',
+          title: 'Introduzca un usuario',
+          message: 'Su nombre de usuario debe ser válido'
+        }, {
+          root: true
+        })
+        return;
+      }
+
+      if (!data.password.length) {
+        ctx.commit('alerts/setAlert', {
+          type: 'error',
+          title: 'Introduzca una contraseña válida',
+          message: 'Su contraseña está vacía'
+        }, {
+          root: true
+        })
+        return;
+      }
+
       const params = new URLSearchParams();
 
       params.append('username', data.username);

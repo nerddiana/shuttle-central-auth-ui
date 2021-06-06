@@ -2,12 +2,12 @@ export default {
   namespaced: true,
   state() {
     return {
-      error: null
+      alert: null
     }
   },
   mutations: {
-    setError(state, error) {
-      state.error = error
+    setAlert(state, alert) {
+      state.alert = alert
     }
   }
 }

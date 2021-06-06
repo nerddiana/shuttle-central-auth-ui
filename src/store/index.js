@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import alerts from './alerts'
 import session from './session'
 import password from './password'
 
@@ -9,6 +10,7 @@ export default createStore({
     return defaultState;
   },
   modules: {
+    alerts,
     session,
     password
   }

@@ -1,7 +1,6 @@
 import {router} from "../../router.js"
 import parseJwt from '../../utils/jwt_decode.js'
 import api from '../../utils/api.js'
-import errors from './errors.js'
 
 export default {
   namespaced: true,
@@ -46,7 +45,7 @@ export default {
         .catch(err => {
           if (err.response.status === 401) {
             // Unauthorized
-            ctx.commit('session/errors/setError', {
+            ctx.commit('alerts/setAlert', {
               title: 'Las credenciales no coinciden',
               message: 'Por favor, revise sus credenciales'
             }, {
@@ -54,7 +53,7 @@ export default {
             })
           } else {
             // Unhandled error
-            ctx.commit('session/errors/setError', {
+            ctx.commit('alerts/setAlert', {
               title: 'Error desconocido',
               message: 'Por favor, intente mas tarde'
             }, {
@@ -84,8 +83,5 @@ export default {
       const session = parseJwt(token)
       ctx.commit('setSession', session)
     }
-  },
-  modules: {
-    errors
   }
 }

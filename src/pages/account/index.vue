@@ -2,6 +2,9 @@
   <h1>account</h1>
   <form @submit.prevent="signin">
     <legend>Sign In</legend>
+    <div v-show="$store.state.sessionErrors.error">
+      {{ $store.state.sessionErrors.error }}
+    </div>
     <input type="text" name="username" v-model="username" />
     <input type="text" name="password" v-model="password" />
     <input type="submit" value="sign in" />

@@ -1,4 +1,7 @@
+import {router} from "../../router.js"
 import parseJwt from '../../utils/jwt_decode.js'
+import api from '../../utils/api.js'
+import { createTextVNode } from "@vue/runtime-core"
 
 export default {
   namespaced: true,
@@ -25,11 +28,55 @@ export default {
     }
   },
   actions: {
-    signIn(ctx, credentials) {
+    async signIn(ctx, data) {
+      const apiUrl = '/realms/master/protocol/openid-connect/token'
+
+      const params = new URLSearchParams();
+
+      params.append('username', data.username);
+      params.append('password', data.password);
+      params.append('grant_type', 'password');
+      params.append('client_id', 'demoapp');
+
+      api
+        .post(apiUrl, params)
+        .then(res => {
+          ctx.dispatch('saveAccessToken', res.data.access_token)
+        })
+        .catch(err => {
+          if (err.response.status === 401) {
+            // Unauthorized
+            ctx.commit('sessionErrors/setError', {
+              title: 'Las credenciales no coinciden',
+              message: 'Por favor, revise sus credenciales'
+            }, {
+              root: true
+            })
+          } else {
+            // Unhandled error
+            ctx.commit('sessionErrors/setError', {
+              title: 'Error desconocido',
+              message: 'Por favor, intente mas tarde'
+            }, {
+              root: true
+            })
+          }
+        })
+    },
+    async saveAccessToken(ctx, token) {
+      console.log('saveAccessToken')
+      localStorage.setItem('access_token', token)
+      await ctx.dispatch('loadAccessToken')
+      console.log('redirect to home')
+      router.push('/')
     },
     loadAccessToken(ctx) {
+      console.log('loadAccessToken')
       const token = localStorage.getItem('access_token')
       ctx.commit('setAccessToken', token)
+      if (token) {
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      }
       const session = parseJwt(token)
       ctx.commit('setSession', session)
     }

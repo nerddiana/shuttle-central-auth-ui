@@ -25,6 +25,9 @@ export default defineComponent({
     updatePassword() {
       this.$store.dispatch('password/savePassword', this.password)
     }
+  },
+  beforeUnmount() {
+    this.$store.commit('alerts/clear')
   }
 })
 </script>

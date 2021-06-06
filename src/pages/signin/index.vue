@@ -28,6 +28,9 @@ export default defineComponent({
         password: this.password
       })
     }
+  },
+  beforeUnmount() {
+    this.$store.commit('alerts/clear')
   }
 })
 </script>

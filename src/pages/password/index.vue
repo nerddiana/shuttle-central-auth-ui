@@ -8,6 +8,7 @@
     <input type="text" v-model="password" />
     <input type="text" v-model="repassword" />
     <input type="submit" value="Guardar cambios" />
+    <router-link to="/">Ir al inicio</router-link>
   </form>
 </template>
 

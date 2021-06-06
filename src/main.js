@@ -12,7 +12,7 @@ const isLoggedIn = () => {
 
 router.beforeEach(async (to, from) => {
   if (to.meta.requiresAuth && !isLoggedIn()) {
-    router.push('/account')
+    router.push('/signin')
   }
 })
 

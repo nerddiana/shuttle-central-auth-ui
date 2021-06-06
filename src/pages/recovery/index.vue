@@ -24,6 +24,18 @@ export default defineComponent({
   },
   methods: {
     recovery() {
+      const isEmail = (str) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(str)
+      if (!isEmail(this.email)) {
+        this.$store.commit('alerts/setAlert', {
+          type: 'error',
+          title: 'Introduzca una correo válido',
+          message: 'Verifique que su correo está escrito correctamente'
+        }, {
+          root: true
+        })
+        return;
+      }
+
       this.$store.commit('alerts/setAlert', {
         type: 'success',
         title: 'Enlace enviado',

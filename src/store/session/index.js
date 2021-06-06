@@ -67,14 +67,11 @@ export default {
       router.push('/signin')
     },
     async saveAccessToken(ctx, token) {
-      console.log('saveAccessToken')
       localStorage.setItem('access_token', token)
       await ctx.dispatch('loadAccessToken')
-      console.log('redirect to home')
       router.push('/')
     },
     loadAccessToken(ctx) {
-      console.log('loadAccessToken')
       const token = localStorage.getItem('access_token')
       ctx.commit('setAccessToken', token)
       if (token) {
